@@ -35,7 +35,6 @@ public class BaseTest{
         DriverConfig.configure();
         Configuration.reportsFolder = "build/reports/tests";
         SelenideLogger.addListener("allure", new AllureSelenide());
-
     }
 
     @AfterEach
