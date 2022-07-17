@@ -28,8 +28,9 @@ allure {
 
 dependencies {
     testImplementation(
-            'com.codeborne:selenide:5.25.0',
+            'com.codeborne:selenide:6.6.3',
             "org.assertj:assertj-core:3.22.0",
+            "org.aeonbits.owner:owner:1.0.12",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion")
     testRuntimeOnly(
@@ -42,6 +43,7 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 
     testLogging {

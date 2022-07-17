@@ -19,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CartPage extends BaseTest {
 
-
     private final SelenideElement
             cartButton = $("[data-role=header-tab-button-minicart]"),
             addCartButton = $("[data-role=add-to-cart-button]"),

@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.DriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,8 +32,7 @@ public class BaseTest{
     }
     @BeforeEach
     void BeforeEach() {
-        Configuration.browserSize = "1280x720";
-        Configuration.baseUrl = "https://goldapple.ru";
+        DriverConfig.configure();
         Configuration.reportsFolder = "build/reports/tests";
         SelenideLogger.addListener("allure", new AllureSelenide());
 
