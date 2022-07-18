@@ -1,3 +1,4 @@
+import Attachment.Attachment;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.DriverConfig;
@@ -39,6 +40,8 @@ public class BaseTest{
 
     @AfterEach
     void closeBrowser() {
+        Attachment.pageSource();
+        Attachment.browserConsoleLogs();
         closeWebDriver();
     }
 
