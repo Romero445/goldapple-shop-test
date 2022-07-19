@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byLinkText;
@@ -12,13 +13,14 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchPage extends BaseTest {
 
     private final SelenideElement
             brand = $(byText("бренды")),
             searchBrandInput = $x("//input[@placeholder='найти бренд']"),
-            brandTitle = $("#page-title-heading"),
+            brandTitle = $x("//span[@data-ui-id='page-title-wrapper']"),
             searchLoopButton=$("[data-role=header-tab-button-search]");
 
 
@@ -39,8 +41,10 @@ public class SearchPage extends BaseTest {
         step("Переходим на страницу бренда", () ->
                 $(byLinkText("Adidas")).click());
 
-        step("Проверяем, что на странице выбранным брендом", () ->
-                brandTitle.shouldHave(text("Adidas")));
+        step("Проверяем, что на странице выбранным брендом", () -> {
+            brandTitle.shouldHave(text("Adids"));
+
+        });
 
     }
 
@@ -62,11 +66,10 @@ public class SearchPage extends BaseTest {
                     .setValue(testData)
                     .pressEnter();
         });
-        step("checking page name", () -> {
-            brandTitle.shouldHave(text(expectedTex)).shouldBe(visible);
-        });
-
+        step("checking page name", () ->
+           brandTitle.shouldHave(text(expectedTex)));
     }
+
     @Test
     @Story("alphabetical search")
     @DisplayName("Checking alphabetical search")

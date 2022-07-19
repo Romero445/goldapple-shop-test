@@ -1,9 +1,6 @@
 package Attachment;
 
 import com.codeborne.selenide.Selenide;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -22,10 +19,6 @@ public class Attachment {
         return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
     }
 
-    @io.qameta.allure.Attachment(value = "{attachName}", type = "image/png")
-    public static byte[] screenshotAs(String attachName) {
-        return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
-    }
 
     public static void browserConsoleLogs() {
         attachAsText(

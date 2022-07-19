@@ -12,7 +12,8 @@ import java.io.File;
 import java.time.LocalTime;
 import java.util.Objects;
 
-import static Common.Config.CLEAR_RESULT;
+import static Common.ClearReportSource.CLEAR_RESULT;
+import static Common.ClearReportSource.CLEAR_SCREENSHOT;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 
@@ -28,6 +29,11 @@ public class BaseTest{
         if(CLEAR_RESULT){
             File allureResults = new File("build/allure-results");
             for(File item: Objects.requireNonNull(allureResults.listFiles()))
+                item.delete();
+        }
+        if(CLEAR_SCREENSHOT){
+            File allureScreen = new File("build/reports/tests");
+            for(File item: Objects.requireNonNull(allureScreen.listFiles()))
                 item.delete();
         }
     }
